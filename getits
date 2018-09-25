@@ -1,0 +1,21 @@
+#!/bin/bash
+
+grepwords=$1
+if [ -z "$1" ]
+  then
+    grepwords="2018-10-21\|2018-10-26\|2018-10-13\|2018-10-27\|2018-11-03\|2018-11-10\|2018-11-17\|2018-11-23\|2018-11-24"
+
+fi
+echo $grepwords
+
+while read url ; do
+	if [[ "$url" =~ ^$ ]]; then
+        	echo empty line
+        	continue
+   	fi
+echo $url
+curl -s $url | grep $grepwords
+done <  ./itsurls.txt
+
+
+
